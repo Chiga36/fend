@@ -47,11 +47,12 @@
             <!-- Navigation Menu -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#product-explorer">Explore</a></li>
                     <li class="nav-item"><a class="nav-link" href="#communication">Support</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link btn-start-now" href="#hero">Start Now</a></li>
+                    <li class="nav-item"><a class="nav-link home" href="#buy">Buy Now !!</a></li> <!-- me add here -->
+
                 </ul>
             </div>
         </div>
@@ -216,18 +217,54 @@
                     </div>
                 </div>
 
-                <!-- Buy Now Button -->
-                <div class="buy-now-section" data-aos="fade-up" data-aos-delay="200">
-                    <button class="buy-now-btn" onclick="showBuyModal()">
-                        <div class="btn-bg-animation"></div>
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>Buy Now - $399</span>
-                        <small>Free shipping worldwide</small>
-                    </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buy Now Section -->
+    <section id="buy" class="buy-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">
+                    <span class="title-icon"><i class="fas fa-shopping-cart"></i></span>
+                    Ready to Order?
+                    <span class="title-decoration"></span>
+                </h2>
+                <p class="section-subtitle">Join thousands of satisfied customers</p>
+            </div>
+
+            <div class="buy-now-section" data-aos="fade-up" data-aos-delay="200">
+                <div class="price-highlight">
+                    <span class="original-price">$599</span>
+                    <span class="current-price">$399</span>
+                    <span class="discount-badge">33% OFF</span>
+                </div>
+
+                <button class="buy-now-btn" onclick="showBuyModal()">
+                    <div class="btn-bg-animation"></div>
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Buy Now - $399</span>
+                    <small>Free shipping</small>
+                </button>
+
+                <div class="guarantee-badges">
+                    <div class="badge-item">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>Free Shipping</span>
+                    </div>
+                    <div class="badge-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>2-Year Warranty</span>
+                    </div>
+                    <div class="badge-item">
+                        <i class="fas fa-undo"></i>
+                        <span>30-Day Returns</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
 
 
     <!-- Communication Section -->
@@ -254,15 +291,16 @@
                         </div>
                         <div class="language-selector">
                             <select id="languageSelect" onchange="changeLanguage()">
-                                <option value="en">🇺🇸 English</option>
-                                <option value="es">🇪🇸 Español</option>
-                                <option value="fr">🇫🇷 Français</option>
-                                <option value="de">🇩🇪 Deutsch</option>
-                                <option value="it">🇮🇹 Italiano</option>
-                                <option value="pt">🇵🇹 Português</option>
-                                <option value="zh">🇨🇳 中文</option>
-                                <option value="ja">🇯🇵 日本語</option>
-                                <option value="hi">🇮🇳 हिंदी</option>
+                                <option value="en">🇮🇳 English</option>
+                                <option value="hi">🇮🇳 हिंदी (Hindi)</option>
+                                <option value="ta">🇮🇳 தமிழ் (Tamil)</option>
+                                <option value="te">🇮🇳 తెలుగు (Telugu)</option>
+                                <option value="bn">🇮🇳 বাংলা (Bengali)</option>
+                                <option value="mr">🇮🇳 मराठी (Marathi)</option>
+                                <option value="gu">🇮🇳 ગુજરાતી (Gujarati)</option>
+                                <option value="kn">🇮🇳 ಕನ್ನಡ (Kannada)</option>
+                                <option value="ml">🇮🇳 മലയാളം (Malayalam)</option>
+                                <option value="pa">🇮🇳 ਪੰਜਾਬੀ (Punjabi)</option>
                             </select>
                         </div>
                     </div>
@@ -283,16 +321,16 @@
                         <h5>Quick Questions:</h5>
                         <div class="question-buttons">
                             <button class="question-btn" onclick="sendQuickQuestion('recipes')">
-                                <i class="fas fa-utensils"></i> Show me recipes
+                                <i class="fas fa-utensils"></i> <span data-en="Indian Recipes" data-hi="भारतीय व्यंजन">Indian Recipes</span>
                             </button>
                             <button class="question-btn" onclick="sendQuickQuestion('features')">
-                                <i class="fas fa-cog"></i> Product features
+                                <i class="fas fa-cog"></i> <span data-en="Product Features" data-hi="उत्पाद विशेषताएं">Product Features</span>
                             </button>
                             <button class="question-btn" onclick="sendQuickQuestion('support')">
-                                <i class="fas fa-headset"></i> Technical support
+                                <i class="fas fa-headset"></i> <span data-en="India Support" data-hi="भारत सपोर्ट">India Support</span>
                             </button>
                             <button class="question-btn" onclick="sendQuickQuestion('warranty')">
-                                <i class="fas fa-shield-alt"></i> Warranty info
+                                <i class="fas fa-shield-alt"></i> <span data-en="Warranty Info" data-hi="वारंटी जानकारी">Warranty Info</span>
                             </button>
                         </div>
                     </div>

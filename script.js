@@ -195,58 +195,93 @@ function sendQuickQuestion(type) {
 }
 
 // Bot Response Logic
-function getBotResponse(message) {
-    const lowerMessage = message.toLowerCase();
-
-    if (lowerMessage.includes('recipe') || lowerMessage.includes('cook')) {
-        return "🍳 I'd love to help with recipes! The ChefMaster Pro comes with 50+ built-in recipes including steaks, pasta, soups, and desserts. You can also download thousands more from our app. What type of cuisine interests you most?";
-    } else if (lowerMessage.includes('price') || lowerMessage.includes('cost')) {
-        return "💰 Great news! The ChefMaster Pro is currently on sale for $399 (originally $599) - that's 33% off! This includes free worldwide shipping, 2-year warranty, and 24/7 support. Would you like to place an order?";
-    } else if (lowerMessage.includes('shipping') || lowerMessage.includes('delivery')) {
-        return "🚚 We offer FREE worldwide shipping! Orders typically arrive within 3-5 business days in the US, and 7-10 days internationally. You'll receive tracking information as soon as your order ships.";
-    } else if (lowerMessage.includes('warranty') || lowerMessage.includes('guarantee')) {
-        return "🛡️ Your ChefMaster Pro comes with a comprehensive 2-year warranty covering all parts and labor, plus a 30-day money-back guarantee. We also provide 24/7 customer support for any questions!";
-    } else if (lowerMessage.includes('features') || lowerMessage.includes('what')) {
-        return "✨ The ChefMaster Pro features AI-powered cooking, app integration, 50+ recipes, energy-efficient design, auto-stirring, smart temperature control, and voice commands. Would you like me to explain any specific feature?";
-    } else {
-        return "😊 Thanks for your message! I'm here to help with any questions about the ChefMaster Pro. You can ask me about recipes, features, pricing, shipping, or technical support. How can I assist you today?";
-    }
-}
-
-// Quick Response Logic
-function getQuickResponse(type) {
-    const responses = {
-        recipes: "🍳 <strong>Popular Recipes:</strong><br>• Perfect Beef Steak (15 min)<br>• Creamy Pasta Primavera (20 min)<br>• Chicken Curry (25 min)<br>• Chocolate Lava Cake (12 min)<br>• Vegetable Stir-fry (10 min)<br><br>The app has 1000+ more recipes with step-by-step guidance!",
-        features: "✨ <strong>Key Features:</strong><br>• AI-Powered Smart Cooking<br>• Mobile App Control<br>• 50+ Built-in Recipes<br>• Auto-Stirring Technology<br>• Energy Efficient (60% savings)<br>• Voice Command Support<br>• 6L Capacity<br>• Easy Cleanup Design",
-        support: "🔧 <strong>Technical Support Available:</strong><br>• 24/7 Live Chat Support<br>• Video Troubleshooting<br>• Remote Diagnostics<br>• Free Repair Service<br>• Replacement Parts<br><br>What specific issue can I help you with?",
-        warranty: "🛡️ <strong>Warranty Coverage:</strong><br>• 2-Year Full Warranty<br>• 30-Day Money-Back Guarantee<br>• Free Repairs & Replacements<br>• 24/7 Customer Support<br>• International Coverage<br><br>Register your product for extended benefits!"
-    };
-
-    return responses[type];
-}
-
-// Language Change
 function changeLanguage() {
     const select = document.getElementById('languageSelect');
     const selectedLang = select.value;
 
-    // Simulate language change (in a real app, you'd implement actual translation)
+    // Indian language greetings
     const greetings = {
-        en: "Hello! How can I help you today? 😊",
-        es: "¡Hola! ¿Cómo puedo ayudarte hoy? 😊",
-        fr: "Bonjour! Comment puis-je vous aider aujourd'hui? 😊",
-        de: "Hallo! Wie kann ich Ihnen heute helfen? 😊",
-        it: "Ciao! Come posso aiutarti oggi? 😊",
-        pt: "Olá! Como posso ajudá-lo hoje? 😊",
-        zh: "你好！我今天能为您做些什么？😊",
-        ja: "こんにちは！今日はどのようにお手伝いできますか？😊",
-        hi: "नमस्ते! आज मैं आपकी कैसे मदद कर सकता हूं? 😊"
+        en: "Hello! How can I help you with ChefMaster Pro today? 😊",
+        hi: "नमस्ते! आज मैं ChefMaster Pro के बारे में आपकी कैसे मदद कर सकता हूँ? 😊",
+        ta: "வணக்கம்! ChefMaster Pro பற்றி இன்று நான் உங்களுக்கு எப்படி உதவ முடியும்? 😊",
+        te: "నమస్కారం! ChefMaster Pro గురించి ఈరోజు నేను మీకు ఎలా సహాయం చేయగలను? 😊",
+        bn: "নমস্কার! ChefMaster Pro সম্পর্কে আজ আমি আপনাকে কীভাবে সাহায্য করতে পারি? 😊",
+        mr: "नमस्कार! ChefMaster Pro बद्दल आज मी तुमची कशी मदत करू शकतो? 😊",
+        gu: "નમસ્તે! ChefMaster Pro વિશે આજે હું તમારી કેવી રીતે મદદ કરી શકું? 😊",
+        kn: "ನಮಸ್ಕಾರ! ChefMaster Pro ಬಗ್ಗೆ ಇಂದು ನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು? 😊",
+        ml: "നമസ്കാരം! ChefMaster Pro കുറിച്ച് ഇന്ന് ഞാൻ നിങ്ങളെ എങ്ങനെ സഹായിക്കാം? 😊",
+        pa: "ਸਤ ਸ੍ਰੀ ਅਕਾਲ! ChefMaster Pro ਬਾਰੇ ਅੱਜ ਮੈਂ ਤੁਹਾਡੀ ਕਿਵੇਂ ਮਦਦ ਕਰ ਸਕਦਾ ਹਾਂ? 😊"
     };
 
     setTimeout(() => {
         addMessage(greetings[selectedLang] || greetings.en);
     }, 500);
 }
+
+// Enhanced Bot Responses for Indian Context
+function getBotResponse(message) {
+    const lowerMessage = message.toLowerCase();
+    const currentLang = document.getElementById('languageSelect').value;
+
+    // Basic responses in multiple Indian languages
+    const responses = {
+        en: {
+            recipes: "🍳 ChefMaster Pro comes with 50+ recipes including Indian favorites like Butter Chicken, Biryani, Dal, and Sambar. What type of cuisine would you like to try?",
+            price: "💰 ChefMaster Pro is available for ₹32,999 (originally ₹49,999) - that's 33% off! Free delivery across India. Would you like to place an order?",
+            features: "✨ ChefMaster Pro features AI cooking, 50+ Indian recipes, app control, auto-stirring, and energy efficiency. Perfect for Indian kitchens!",
+            shipping: "🚚 We offer FREE delivery across India! Orders reach metro cities in 2-3 days, other cities in 4-7 days.",
+            warranty: "🛡️ 2-year warranty with free service at your doorstep. 30-day money-back guarantee. Call our India support: 1800-CHEF-PRO"
+        },
+        hi: {
+            recipes: "🍳 ChefMaster Pro में 50+ व्यंजन हैं जिनमें बटर चिकन, बिरयानी, दाल, और सांभर शामिल हैं। आप कौन सा व्यंजन बनाना चाहते हैं?",
+            price: "💰 ChefMaster Pro ₹32,999 में उपलब्ध है (मूल कीमत ₹49,999) - 33% की छूट! पूरे भारत में मुफ्त डिलीवरी।",
+            features: "✨ ChefMaster Pro में AI कुकिंग, 50+ भारतीय व्यंजन, ऐप कंट्रोल और ऑटो-स्टिरिंग है। भारतीय रसोई के लिए बिल्कुल सही!",
+            shipping: "🚚 पूरे भारत में मुफ्त डिलीवरी! मेट्रो शहरों में 2-3 दिन, अन्य शहरों में 4-7 दिन में डिलीवरी।",
+            warranty: "🛡️ घर पर मुफ्त सर्विस के साथ 2 साल की वारंटी। 30 दिन पैसे वापसी की गारंटी।"
+        }
+        // Add more languages as needed
+    };
+
+    if (lowerMessage.includes('recipe') || lowerMessage.includes('व्यंजन') || lowerMessage.includes('खाना')) {
+        return responses[currentLang]?.recipes || responses.en.recipes;
+    } else if (lowerMessage.includes('price') || lowerMessage.includes('कीमत') || lowerMessage.includes('दाम')) {
+        return responses[currentLang]?.price || responses.en.price;
+    } else if (lowerMessage.includes('features') || lowerMessage.includes('विशेषताएं')) {
+        return responses[currentLang]?.features || responses.en.features;
+    } else if (lowerMessage.includes('shipping') || lowerMessage.includes('डिलीवरी')) {
+        return responses[currentLang]?.shipping || responses.en.shipping;
+    } else if (lowerMessage.includes('warranty') || lowerMessage.includes('वारंटी')) {
+        return responses[currentLang]?.warranty || responses.en.warranty;
+    } else {
+        return currentLang === 'hi' ?
+            "😊 धन्यवाद! मैं ChefMaster Pro के बारे में आपकी मदद कर सकता हूँ। व्यंजन, कीमत, या सुविधाओं के बारे में पूछें।" :
+            "😊 Thanks for your message! I can help with ChefMaster Pro recipes, pricing, features, or support. What would you like to know?";
+    }
+}
+
+// Updated Quick Questions for Indian Context
+function getQuickResponse(type) {
+    const currentLang = document.getElementById('languageSelect').value;
+
+    const responses = {
+        en: {
+            recipes: "🍳 <strong>Popular Indian Recipes:</strong><br>• Butter Chicken (25 min)<br>• Vegetable Biryani (30 min)<br>• Dal Tadka (15 min)<br>• Chicken Curry (35 min)<br>• Sambar (20 min)<br>• Rajma (40 min)<br><br>Plus 44 more recipes in the app!",
+            features: "✨ <strong>Perfect for Indian Cooking:</strong><br>• AI-Powered Smart Cooking<br>• 50+ Indian Recipes<br>• Auto-Stirring for Curries<br>• Pressure Cooking Mode<br>• Rice Cooker Function<br>• Energy Efficient<br>• Easy Cleanup",
+            support: "🔧 <strong>India Support:</strong><br>• Hindi & English Support<br>• Video Call Assistance<br>• Home Service Available<br>• Free Installation<br>• Toll-Free: 1800-CHEF-PRO<br>• WhatsApp: +91-98765-43210",
+            warranty: "🛡️ <strong>India Warranty:</strong><br>• 2-Year Full Warranty<br>• 30-Day Money Back<br>• Home Service in 500+ Cities<br>• Free Annual Maintenance<br>• Authorized Service Centers<br>• Extended Warranty Available"
+        },
+        hi: {
+            recipes: "🍳 <strong>लोकप्रिय भारतीय व्यंजन:</strong><br>• बटर चिकन (25 मिनट)<br>• वेज बिरयानी (30 मिनट)<br>• दाल तड़का (15 मिनट)<br>• चिकन करी (35 मिनट)<br>• सांभर (20 मिनट)<br>• राजमा (40 मिनट)<br><br>ऐप में 44 और भी व्यंजन!",
+            features: "✨ <strong>भारतीय खाना बनाने के लिए बिल्कुल सही:</strong><br>• AI स्मार्ट कुकिंग<br>• 50+ भारतीय व्यंजन<br>• करी के लिए ऑटो-स्टिरिंग<br>• प्रेशर कुकिंग मोड<br>• राइस कुकर फंक्शन<br>• ऊर्जा बचाने वाला<br>• आसान सफाई",
+            support: "🔧 <strong>भारत सपोर्ट:</strong><br>• हिंदी और अंग्रेजी सपोर्ट<br>• वीडियो कॉल सहायता<br>• घर पर सर्विस उपलब्ध<br>• मुफ्त इंस्टॉलेशन<br>• टोल-फ्री: 1800-CHEF-PRO<br>• व्हाट्सएप: +91-98765-43210",
+            warranty: "🛡️ <strong>भारत वारंटी:</strong><br>• 2 साल की पूरी वारंटी<br>• 30 दिन पैसे वापसी<br>• 500+ शहरों में होम सर्विस<br>• मुफ्त वार्षिक रखरखाव<br>• अधिकृत सर्विस सेंटर<br>• विस्तारित वारंटी उपलब्ध"
+        }
+    };
+
+    return responses[currentLang]?.[type] || responses.en[type];
+}
+
+
 
 // Form Handling
 function initializeFormHandling() {

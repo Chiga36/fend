@@ -51,7 +51,7 @@
                     <li class="nav-item"><a class="nav-link" href="#product-explorer">Explore</a></li>
                     <li class="nav-item"><a class="nav-link" href="#communication">Support</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link home" href="#buy">Buy Now !!</a></li> <!-- me add here -->
+                    <li class="nav-item"><a class="nav-link home" href="#buy">Buy Now !!</a></li>
 
                 </ul>
             </div>
@@ -436,11 +436,12 @@
                             <div class="newsletter-signup">
                                 <h5>Stay Updated</h5>
                                 <div class="newsletter-form">
-                                    <input type="email" placeholder="Enter your email">
-                                    <button type="submit">
+                                    <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
+                                    <button type="button" id="newsletterBtn" onclick="subscribeNewsletter()">
                                         <i class="fas fa-bell"></i>
                                     </button>
                                 </div>
+                                <div id="newsletterMessage" class="newsletter-message"></div>
                             </div>
                         </div>
                     </div>

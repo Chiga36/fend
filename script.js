@@ -393,3 +393,162 @@ document.addEventListener('click', function(e) {
         trackEvent('Buy_Now_Click', { section: 'Product_Explorer' });
     }
 });
+
+// Newsletter Subscription Functionality
+function subscribeNewsletter() {
+    const emailInput = document.getElementById('newsletterEmail');
+    const email = emailInput.value.trim();
+    const messageDiv = document.getElementById('newsletterMessage');
+    const button = document.getElementById('newsletterBtn');
+
+    // Clear previous messages
+    messageDiv.className = 'newsletter-message';
+    messageDiv.textContent = '';
+    emailInput.classList.remove('error', 'success');
+
+    // Validate email
+    if (!email) {
+        showNewsletterError('Please enter your email address', emailInput, messageDiv);
+        return;
+    }
+
+    if (!isValidEmail(email)) {
+        showNewsletterError('Please enter a valid email address', emailInput, messageDiv);
+        return;
+    }
+
+    // Show loading state
+    const originalIcon = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    button.disabled = true;
+
+    // Simulate API call
+    setTimeout(() => {
+        // Success state
+        emailInput.classList.add('success');
+        button.innerHTML = '<i class="fas fa-check"></i>';
+
+        // Show success popup
+        showSuccessPopup(email);
+
+        // Clear form after delay
+        setTimeout(() => {
+            emailInput.value = '';
+            emailInput.classList.remove('success');
+            button.innerHTML = originalIcon;
+            button.disabled = false;
+            messageDiv.textContent = '';
+        }, 3000);
+
+    }, 1500); // Simulate network delay
+}
+
+// Email Validation Function
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Basic validation checks
+    if (!emailRegex.test(email)) return false;
+    if (email.length < 5) return false;
+    if (email.length > 254) return false;
+
+    // Check for common email providers (optional)
+    const domain = email.split('@')[1].toLowerCase();
+    const commonDomains = [
+        'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com',
+        'rediffmail.com', 'yahoo.in', 'gmail.in', 'live.com',
+        'icloud.com', 'protonmail.com', 'yandex.com'
+    ];
+
+    // If it's a common domain, it's definitely valid
+    if (commonDomains.includes(domain)) return true;
+
+    // For other domains, check if it has proper structure
+    return domain.includes('.') && domain.split('.').every(part => part.length > 0);
+}
+
+// Show Error Message
+function showNewsletterError(message, inputElement, messageElement) {
+    inputElement.classList.add('error');
+    messageElement.className = 'newsletter-message error';
+    messageElement.textContent = message;
+
+    // Shake animation for input
+    inputElement.style.animation = 'shake 0.5s ease';
+    setTimeout(() => {
+        inputElement.style.animation = '';
+    }, 500);
+}
+
+// Show Success Popup
+function showSuccessPopup(email) {
+    // Create popup if it doesn't exist
+    let popup = document.getElementById('newsletterPopup');
+    if (!popup) {
+        popup = document.createElement('div');
+        popup.id = 'newsletterPopup';
+        popup.className = 'newsletter-popup';
+        popup.innerHTML = `
+            <div class="newsletter-popup-content">
+                <div class="newsletter-popup-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <h4>Subscription Confirmed!</h4>
+                <p>Thank you for subscribing! You'll receive all the latest updates about ChefMaster Pro, including new recipes, features, and exclusive offers.</p>
+                <p><strong>We'll send notifications to:</strong><br><span id="confirmedEmail"></span></p>
+                <button class="newsletter-popup-close" onclick="closeNewsletterPopup()">
+                    <i class="fas fa-check"></i> Got it!
+                </button>
+            </div>
+        `;
+        document.body.appendChild(popup);
+    }
+
+    // Update email in popup
+    document.getElementById('confirmedEmail').textContent = email;
+
+    // Show popup
+    popup.classList.add('show');
+
+    // Auto-close after 5 seconds
+    setTimeout(() => {
+        closeNewsletterPopup();
+    }, 5000);
+}
+
+// Close Success Popup
+function closeNewsletterPopup() {
+    const popup = document.getElementById('newsletterPopup');
+    if (popup) {
+        popup.classList.remove('show');
+    }
+}
+
+// Handle Enter key in newsletter input
+document.addEventListener('DOMContentLoaded', function() {
+    const newsletterInput = document.getElementById('newsletterEmail');
+    if (newsletterInput) {
+        newsletterInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                subscribeNewsletter();
+            }
+        });
+    }
+});
+
+// Add shake animation CSS
+const shakeCSS = `
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+`;
+
+// Add shake animation to CSS if not already present
+if (!document.querySelector('#shakeAnimation')) {
+    const style = document.createElement('style');
+    style.id = 'shakeAnimation';
+    style.textContent = shakeCSS;
+    document.head.appendChild(style);
+}
